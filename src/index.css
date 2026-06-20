@@ -1,0 +1,83 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 38 56% 87%;
+    --card: 0 0% 10%;
+    --card-foreground: 38 56% 87%;
+    --popover: 0 0% 10%;
+    --popover-foreground: 38 56% 87%;
+    --primary: 38 54% 50%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 38 56% 87%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 50 5% 50%;
+    --accent: 0 0% 10%;
+    --accent-foreground: 38 56% 87%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 38 54% 50% / 0.15;
+    --input: 38 54% 50% / 0.2;
+    --ring: 38 54% 50%;
+    --radius: 0.5rem;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  body {
+    @apply bg-charcoal text-cream font-body antialiased;
+    font-weight: 300;
+    line-height: 1.7;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  ::selection {
+    background: rgba(196, 148, 58, 0.3);
+    color: #F5E6C8;
+  }
+}
+
+@layer components {
+  .pill-button {
+    @apply inline-flex items-center justify-center px-8 py-3.5 rounded-full font-body text-xs uppercase tracking-[0.12em] font-normal transition-colors duration-300 cursor-pointer;
+  }
+
+  .pill-button-primary {
+    @apply pill-button bg-ember text-charcoal hover:bg-burnt;
+  }
+
+  .pill-button-outline {
+    @apply pill-button bg-transparent border border-ember text-ember hover:bg-ember hover:text-charcoal;
+  }
+
+  .section-label {
+    @apply font-body text-[0.625rem] uppercase tracking-[0.15em] text-ember;
+  }
+
+  .gold-border-card {
+    @apply bg-charcoal-light border border-[rgba(196,148,58,0.1)] rounded-lg;
+  }
+
+  .gold-border-card-hover {
+    @apply gold-border-card transition-all duration-300 hover:border-ember;
+  }
+
+  .input-dark {
+    @apply w-full bg-charcoal-lighter border border-[rgba(196,148,58,0.2)] rounded px-4 py-3 text-cream font-body text-sm font-light placeholder:text-[rgba(245,230,200,0.3)] focus:border-ember focus:outline-none focus:ring-2 focus:ring-[rgba(196,148,58,0.15)] transition-colors;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
