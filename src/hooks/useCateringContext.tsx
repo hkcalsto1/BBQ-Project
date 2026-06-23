@@ -27,6 +27,7 @@ export function CateringProvider({ children }: { children: ReactNode }) {
         price: item.price,
         priceUnit: item.priceUnit as PriceUnit,
         priceSuffix: item.priceSuffix,
+        image: item.image,
         isActive: item.isActive,
         sortOrder: item.sortOrder,
       }));

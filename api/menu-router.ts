@@ -51,6 +51,7 @@ export const menuRouter = createRouter({
       price: z.number().int().positive(),
       priceUnit: z.string().min(1),
       priceSuffix: z.string().default(""),
+      image: z.string().optional().nullable(),
       isActive: z.boolean().default(true),
       sortOrder: z.number().int().default(0),
     }))

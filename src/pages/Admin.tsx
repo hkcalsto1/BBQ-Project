@@ -5,18 +5,20 @@ import OrdersTab from "./admin/OrdersTab";
 import ProductsTab from "./admin/ProductsTab";
 import MenuTab from "./admin/MenuTab";
 import CategoriesTab from "./admin/CategoriesTab";
+import EnquiriesTab from "./admin/EnquiriesTab";
 
-type Tab = "orders" | "products" | "menu" | "categories";
+type Tab = "enquiries" | "orders" | "products" | "menu" | "categories";
 
 const TABS: { id: Tab; label: string }[] = [
-  { id: "orders", label: "Orders" },
+  { id: "enquiries", label: "Enquiries" },
+  { id: "orders", label: "Shop Orders" },
   { id: "products", label: "Products" },
   { id: "menu", label: "Catering Menu" },
   { id: "categories", label: "Categories" },
 ];
 
 export default function Admin() {
-  const [tab, setTab] = useState<Tab>("orders");
+  const [tab, setTab] = useState<Tab>("enquiries");
   const navigate = useNavigate();
   const logout = trpc.auth.logout.useMutation({ onSuccess: () => navigate("/login") });
 
@@ -54,6 +56,7 @@ export default function Admin() {
         </div>
 
         {/* Tab content */}
+        {tab === "enquiries" && <EnquiriesTab />}
         {tab === "orders" && <OrdersTab />}
         {tab === "products" && <ProductsTab />}
         {tab === "menu" && <MenuTab />}

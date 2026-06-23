@@ -37,7 +37,7 @@ export default function Navigation() {
             : "bg-transparent"
         }`}
       >
-        <Link to="/" className="font-display text-2xl text-cream tracking-tight">
+        <Link to="/" className="font-display text-2xl text-cream tracking-tight whitespace-nowrap">
           SmokeHouse HK
         </Link>
 

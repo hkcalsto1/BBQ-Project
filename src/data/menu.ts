@@ -56,7 +56,10 @@ export const eventTypeOptions = [
 ] as const;
 
 export const serviceTypeOptions = [
-  'Delivery',
-  'Pickup',
-  'On-site Service',
+  'Delivery (HK$150)',
+  'Pickup — Free (Discovery Bay)',
 ] as const;
+
+export const MIN_ORDER = 2000;
+export const DELIVERY_FEE = 150;
+export const LEAD_TIME_DAYS = 5;

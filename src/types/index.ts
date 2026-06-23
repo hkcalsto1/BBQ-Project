@@ -10,6 +10,7 @@ export interface MenuItem {
   price: number;
   priceUnit: PriceUnit;
   priceSuffix: string;
+  image?: string | null;
   minOrder?: number;
   isActive: boolean;
   sortOrder: number;
@@ -22,7 +23,7 @@ export interface SelectedItem {
 
 export type EventType = 'Corporate Event' | 'Wedding' | 'Birthday Party' | 'Private Party' | 'Other';
 
-export type ServiceType = 'Delivery' | 'Pickup' | 'On-site Service';
+export type ServiceType = 'Delivery (HK$150)' | 'Pickup — Free (Discovery Bay)';
 
 export interface EventDetails {
   name: string;
@@ -31,7 +32,8 @@ export interface EventDetails {
   eventDate: string;
   eventType: EventType | '';
   guestCount: number;
-  serviceType: ServiceType;
+  serviceType: ServiceType | '';
+  deliveryAddress: string;
   notes: string;
 }
 

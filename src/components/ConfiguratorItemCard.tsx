@@ -41,13 +41,20 @@ export default function ConfiguratorItemCard({ item, quantity, onUpdateQuantity 
     <div
       ref={cardRef}
       onClick={handleCardClick}
-      className={`rounded-lg px-5 py-4 cursor-pointer transition-all duration-300 border ${
+      className={`group rounded-lg px-5 py-4 cursor-pointer transition-all duration-300 border ${
         isSelected
           ? 'border-ember bg-[#1F1F1F] shadow-[0_0_20px_rgba(196,148,58,0.08)]'
           : 'border-[rgba(196,148,58,0.1)] bg-charcoal-light hover:border-[rgba(196,148,58,0.3)] hover:bg-[#1F1F1F]'
       }`}
     >
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between gap-4">
+        <div style={{ width: 52, height: 52, borderRadius: 6, overflow: 'hidden', flexShrink: 0, backgroundColor: 'rgba(196,148,58,0.12)' }}>
+          {item.image ? (
+            <img src={item.image} alt={item.name} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          ) : (
+            <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 18, opacity: 0.3 }}>🍖</div>
+          )}
+        </div>
         <div className="flex-1 min-w-0">
           <span className="font-body text-base text-cream">{item.name}</span>
           <span className="font-body text-sm font-semibold text-burnt ml-3">

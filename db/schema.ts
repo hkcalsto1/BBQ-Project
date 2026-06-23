@@ -115,9 +115,32 @@ export const menuItems = pgTable("menu_items", {
   price: integer("price").notNull(),
   priceUnit: varchar("priceUnit", { length: 50 }).notNull(),
   priceSuffix: varchar("priceSuffix", { length: 100 }).default("").notNull(),
+  image: text("image"),
   isActive: boolean("isActive").default(true).notNull(),
   sortOrder: integer("sortOrder").default(0).notNull(),
 });
 
 export type DbMenuItem = typeof menuItems.$inferSelect;
 export type InsertMenuItem = typeof menuItems.$inferInsert;
+
+// ── Catering Enquiries ──
+export const cateringEnquiries = pgTable("catering_enquiries", {
+  id: serial("id").primaryKey(),
+  customerName: varchar("customerName", { length: 255 }).notNull(),
+  customerEmail: varchar("customerEmail", { length: 320 }).notNull(),
+  customerPhone: varchar("customerPhone", { length: 50 }).notNull(),
+  eventDate: varchar("eventDate", { length: 50 }).notNull(),
+  eventType: varchar("eventType", { length: 100 }).notNull(),
+  guestCount: integer("guestCount").notNull(),
+  serviceType: varchar("serviceType", { length: 100 }).notNull(),
+  deliveryAddress: text("deliveryAddress"),
+  notes: text("notes"),
+  items: jsonb("items").$type<{ name: string; quantity: number; price: number; total: number }[]>().notNull(),
+  subtotal: integer("subtotal").notNull(),
+  deliveryFee: integer("deliveryFee").default(0).notNull(),
+  total: integer("total").notNull(),
+  status: varchar("status", { length: 50 }).default("NEW").notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
+export type CateringEnquiry = typeof cateringEnquiries.$inferSelect;
