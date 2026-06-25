@@ -132,12 +132,15 @@ export default function ConfiguratorSection() {
   return (
     <section id="catering" className="bg-charcoal py-20 md:py-[120px] px-6 md:px-10">
       <div className="max-w-[1100px] mx-auto">
-        <SectionHeader
-          label="CATERING"
-          heading="Build Your Order"
-          subtitle="Select your items, tell us about your event, and we'll get back to you within 24 hours."
-          align="left"
-        />
+        {/* Section Header */}
+        <div className="mb-10 text-center">
+          <span className="font-body text-[0.65rem] uppercase tracking-[0.22em] text-ember">Build Your Order</span>
+          <h2 className="font-display text-[clamp(2rem,4vw,3rem)] text-cream mt-3 mb-3">Catering Configurator</h2>
+          <p className="font-body text-[14px] text-smoke leading-relaxed max-w-[520px] mx-auto">
+            Pick your spread, tell us about your event, and we'll send a quote within 24 hours.
+            Minimum order HK$2,000 · 5 days notice required.
+          </p>
+        </div>
 
         <StepIndicator currentStep={currentStep} />
 
@@ -147,26 +150,24 @@ export default function ConfiguratorSection() {
 
               {/* STEP 1: Menu Selection */}
               {currentStep === 1 && (
-                <div className="space-y-10">
+                <div className="flex flex-col gap-8">
                   {categoryOrder.map((category) => {
                     const items = menuItems.filter((item) => item.category === category);
                     const label = categoryLabels[category];
+                    const selCount = getCategorySelectedCount(category);
                     return (
                       <div key={category}>
-                        <div className="relative w-full h-[120px] rounded-lg overflow-hidden mb-4">
-                          <img src={categoryImages[category]} alt={label.title} className="w-full h-full object-cover" loading="lazy" />
-                          <div className="absolute inset-0 bg-gradient-to-r from-charcoal/70 via-charcoal/30 to-transparent" />
-                          <div className="absolute bottom-3 left-4">
-                            <span className="font-display text-xl text-cream">{label.title}</span>
-                            {label.subtitle && (
-                              <span className="font-body text-[0.6rem] uppercase tracking-[0.1em] text-ember ml-2">{label.subtitle}</span>
-                            )}
-                            {getCategorySelectedCount(category) > 0 && (
-                              <span className="font-body text-[0.625rem] text-ember ml-2">{getCategorySelectedCount(category)} selected</span>
-                            )}
-                          </div>
+                        {/* Text category header — DC style */}
+                        <div className="flex items-baseline gap-3 mb-3.5 pb-2.5 border-b border-[rgba(245,230,200,0.08)]">
+                          <h3 className="font-display text-[1.45rem] text-cream">{label.title}</h3>
+                          {label.subtitle && (
+                            <span className="font-body text-[0.6rem] uppercase tracking-[0.08em] text-ember/70">{label.subtitle}</span>
+                          )}
+                          {selCount > 0 && (
+                            <span className="font-body text-[0.6rem] text-ember ml-auto">{selCount} selected</span>
+                          )}
                         </div>
-                        <div className="space-y-3">
+                        <div className="flex flex-col gap-[9px]">
                           {items.map((item) => (
                             <ConfiguratorItemCard
                               key={item.id}
@@ -231,7 +232,7 @@ export default function ConfiguratorSection() {
                       <label className="font-body text-xs uppercase tracking-[0.08em] text-smoke mb-3 block">Service Type *</label>
                       <div className="flex flex-col sm:flex-row gap-3">
                         {serviceTypeOptions.map((type) => (
-                          <label key={type} className="flex items-center gap-3 cursor-pointer bg-charcoal-light border border-[rgba(196,148,58,0.1)] hover:border-ember rounded-lg px-4 py-3 transition-colors flex-1">
+                          <label key={type} className="flex items-center gap-3 cursor-pointer bg-[#141414] border border-[rgba(196,148,58,0.1)] hover:border-ember rounded-xl px-4 py-3 transition-colors flex-1">
                             <input {...register('serviceType')} type="radio" value={type} className="sr-only peer" />
                             <div className="w-4 h-4 rounded-full border-2 border-[rgba(196,148,58,0.3)] peer-checked:border-ember peer-checked:bg-ember flex items-center justify-center transition-colors shrink-0">
                               <div className="w-1.5 h-1.5 rounded-full bg-charcoal opacity-0 peer-checked:opacity-100" />
@@ -258,10 +259,10 @@ export default function ConfiguratorSection() {
 
                   <div className="flex items-center gap-3 mt-10">
                     <button type="button" onClick={() => goToStep(1)}
-                      className="px-7 py-3 border border-[rgba(196,148,58,0.3)] text-smoke rounded font-body text-xs uppercase tracking-[0.1em] hover:border-ember hover:text-ember transition-colors cursor-pointer"
+                      className="px-7 py-3 border border-[rgba(196,148,58,0.3)] text-smoke rounded-full font-body text-xs uppercase tracking-[0.1em] hover:border-ember hover:text-ember transition-colors cursor-pointer"
                     >Back</button>
                     <button type="submit"
-                      className="px-8 py-3 bg-ember text-charcoal rounded font-body text-xs uppercase tracking-[0.1em] hover:bg-burnt transition-colors cursor-pointer"
+                      className="px-8 py-3 bg-ember text-charcoal rounded-full font-body text-xs uppercase tracking-[0.1em] hover:bg-burnt transition-colors cursor-pointer"
                     >Review Order</button>
                   </div>
                 </form>
@@ -370,12 +371,12 @@ export default function ConfiguratorSection() {
 
                       <div className="flex flex-col sm:flex-row items-start gap-3">
                         <button onClick={() => goToStep(2)}
-                          className="px-7 py-3 border border-[rgba(196,148,58,0.3)] text-smoke rounded font-body text-xs uppercase tracking-[0.1em] hover:border-ember hover:text-ember transition-colors cursor-pointer"
+                          className="px-7 py-3 border border-[rgba(196,148,58,0.3)] text-smoke rounded-full font-body text-xs uppercase tracking-[0.1em] hover:border-ember hover:text-ember transition-colors cursor-pointer"
                         >Back</button>
                         <button
                           onClick={handleSubmitInquiry}
                           disabled={submitStatus === 'submitting'}
-                          className="w-full sm:w-auto px-10 py-4 bg-ember text-charcoal rounded font-body text-sm uppercase tracking-[0.1em] hover:bg-burnt transition-colors cursor-pointer disabled:opacity-50"
+                          className="w-full sm:w-auto px-10 py-4 bg-ember text-charcoal rounded-full font-body text-sm uppercase tracking-[0.1em] hover:bg-burnt transition-colors cursor-pointer disabled:opacity-50"
                         >
                           {submitStatus === 'submitting' ? 'Submitting…' : 'Submit Enquiry'}
                         </button>

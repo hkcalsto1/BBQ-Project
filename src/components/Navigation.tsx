@@ -49,6 +49,12 @@ export default function Navigation() {
           >
             Home
           </button>
+          <button
+            onClick={() => scrollTo("catering")}
+            className="font-body text-xs uppercase tracking-[0.1em] text-smoke hover:text-ember transition-colors cursor-pointer"
+          >
+            Catering
+          </button>
           <Link
             to="/shop"
             className="font-body text-xs uppercase tracking-[0.1em] text-smoke hover:text-ember transition-colors"
@@ -113,6 +119,7 @@ export default function Navigation() {
             </svg>
           </button>
           <button onClick={() => { scrollTo("home"); }} className="font-body text-2xl uppercase text-cream hover:text-ember transition-colors cursor-pointer">Home</button>
+          <button onClick={() => { scrollTo("catering"); }} className="font-body text-2xl uppercase text-cream hover:text-ember transition-colors cursor-pointer">Catering</button>
           <Link to="/shop" onClick={() => setMobileOpen(false)} className="font-body text-2xl uppercase text-cream hover:text-ember transition-colors">Shop</Link>
           <button onClick={() => { scrollTo("about"); }} className="font-body text-2xl uppercase text-cream hover:text-ember transition-colors cursor-pointer">About</button>
           <button onClick={() => { scrollTo("contact"); }} className="font-body text-2xl uppercase text-cream hover:text-ember transition-colors cursor-pointer">Contact</button>

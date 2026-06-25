@@ -40,8 +40,8 @@ module.exports = {
         },
         charcoal: {
           DEFAULT: '#0A0A0A',
-          light: '#1A1A1A',
-          lighter: '#2A2A2A',
+          light: '#141414',
+          lighter: '#1C1C1C',
         },
         ember: {
           DEFAULT: '#C4943A',

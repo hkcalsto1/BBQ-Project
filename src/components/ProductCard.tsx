@@ -27,9 +27,9 @@ const unitLabels: Record<string, string> = {
 
 export default function ProductCard({ product }: Props) {
   const { addItem } = useCart();
-  const [weight, setWeight] = useState<number>(() => {
-    return product.minWeightKg ? parseFloat(product.minWeightKg) : 1;
-  });
+  const [weight, setWeight] = useState<number>(() =>
+    product.minWeightKg ? parseFloat(product.minWeightKg) : 1
+  );
   const [added, setAdded] = useState(false);
 
   const price = parseFloat(product.price);
@@ -37,8 +37,8 @@ export default function ProductCard({ product }: Props) {
   const minW = product.minWeightKg ? parseFloat(product.minWeightKg) : 0.5;
   const maxW = product.maxWeightKg ? parseFloat(product.maxWeightKg) : 10;
   const step = product.weightStep ? parseFloat(product.weightStep) : 0.5;
-
   const displayPrice = isWeightBased ? price * weight : price;
+  const isReady = product.section === "SMOKEHOUSE";
 
   const handleAdd = () => {
     addItem({
@@ -54,63 +54,51 @@ export default function ProductCard({ product }: Props) {
   };
 
   return (
-    <div className="bg-charcoal-light border border-[rgba(196,148,58,0.1)] rounded-lg overflow-hidden hover:border-ember/40 transition-all duration-300 group">
-      {/* Image placeholder */}
-      <div className="h-40 bg-gradient-to-br from-charcoal-lighter to-charcoal flex items-center justify-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[rgba(196,148,58,0.03)]" />
-        <span className="font-display text-3xl text-ember/20 uppercase tracking-wider">
-          {product.section === "SMOKEHOUSE" ? "Smoke" : "Raw"}
+    <div className="bg-charcoal-light border border-[rgba(196,148,58,0.06)] rounded-2xl overflow-hidden hover:border-[rgba(196,148,58,0.25)] transition-colors duration-300 flex flex-col">
+      {/* Image area */}
+      <div className="relative aspect-[4/3] bg-[#1C1C1C]">
+        <div className="absolute inset-0 flex items-center justify-center select-none">
+          <span className="font-display text-4xl text-ember/10 uppercase tracking-widest">
+            {isReady ? "Smoke" : "Raw"}
+          </span>
+        </div>
+        <span className={`absolute top-3 right-3 z-10 font-body text-[0.6rem] font-semibold uppercase tracking-[0.06em] px-2.5 py-1 rounded-full ${
+          isReady
+            ? "bg-[rgba(196,148,58,0.9)] text-[#0A0A0A]"
+            : "bg-[rgba(37,37,37,0.9)] text-[rgba(245,230,200,0.6)] border border-[rgba(196,148,58,0.1)]"
+        }`}>
+          {isReady ? "Ready" : "Raw Cut"}
         </span>
-        {product.section === "SMOKEHOUSE" && (
-          <div className="absolute top-2 right-2 bg-ember/20 text-ember text-[0.6rem] uppercase tracking-wider px-2 py-0.5 rounded font-body">
-            Smoked
-          </div>
-        )}
-        {product.section === "BUTCHER" && (
-          <div className="absolute top-2 right-2 bg-smoke/20 text-smoke text-[0.6rem] uppercase tracking-wider px-2 py-0.5 rounded font-body">
-            Raw
-          </div>
-        )}
       </div>
 
-      <div className="p-4">
-        <h3 className="font-body text-sm font-medium text-cream leading-tight">
-          {product.name}
-        </h3>
-        {product.description && (
-          <p className="font-body text-xs text-smoke mt-1 line-clamp-2 leading-relaxed">
-            {product.description}
-          </p>
-        )}
-
-        <div className="mt-3 flex items-baseline gap-1">
-          <span className="font-body text-lg font-semibold text-burnt">
-            ${displayPrice.toLocaleString()}
-          </span>
-          <span className="font-body text-xs text-smoke">
+      {/* Body */}
+      <div className="p-5 flex flex-col flex-1">
+        <div className="flex justify-between items-start gap-2 mb-1">
+          <h3 className="font-display text-[1.2rem] text-cream leading-tight">
+            {product.name}
+          </h3>
+          <span className="font-body text-[0.65rem] text-smoke/60 whitespace-nowrap mt-1">
             {unitLabels[product.priceUnit] ?? ""}
           </span>
         </div>
 
-        {/* Weight selector for weight-based items */}
+        {product.description && (
+          <p className="font-body text-[12px] text-smoke leading-relaxed mt-1 mb-4 line-clamp-2 flex-1">
+            {product.description}
+          </p>
+        )}
+
         {isWeightBased && (
-          <div className="mt-3">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-body text-[0.6rem] uppercase tracking-wider text-smoke">
-                Weight
-              </span>
-              <span className="font-body text-xs text-ember">
-                {weight}kg
-              </span>
+          <div className="mb-4">
+            <div className="flex justify-between mb-1">
+              <span className="font-body text-[0.6rem] uppercase tracking-wider text-smoke">Weight</span>
+              <span className="font-body text-xs text-ember">{weight}kg</span>
             </div>
             <input
               type="range"
-              min={minW}
-              max={maxW}
-              step={step}
-              value={weight}
+              min={minW} max={maxW} step={step} value={weight}
               onChange={(e) => setWeight(parseFloat(e.target.value))}
-              className="w-full h-1 bg-charcoal-lighter rounded-lg appearance-none cursor-pointer accent-ember"
+              className="w-full h-1 bg-charcoal-lighter rounded-full appearance-none cursor-pointer accent-ember"
             />
             <div className="flex justify-between mt-1">
               <span className="font-body text-[0.5rem] text-smoke">{minW}kg</span>
@@ -119,16 +107,21 @@ export default function ProductCard({ product }: Props) {
           </div>
         )}
 
-        <button
-          onClick={handleAdd}
-          className={`w-full mt-3 py-2.5 rounded font-body text-xs uppercase tracking-[0.1em] transition-all duration-300 cursor-pointer ${
-            added
-              ? "bg-green-800/50 text-green-400 border border-green-700/50"
-              : "bg-ember text-charcoal hover:bg-burnt"
-          }`}
-        >
-          {added ? "Added!" : "Add to Cart"}
-        </button>
+        <div className="flex items-center justify-between pt-4 border-t border-[rgba(196,148,58,0.06)] mt-auto">
+          <span className="font-display text-[1.3rem] text-cream">
+            HK${displayPrice.toLocaleString()}
+          </span>
+          <button
+            onClick={handleAdd}
+            className={`font-body text-[0.65rem] font-semibold uppercase tracking-[0.1em] px-4 py-2 rounded-full transition-colors duration-200 cursor-pointer ${
+              added
+                ? "bg-[rgba(34,197,94,0.15)] text-green-400 border border-green-700/40"
+                : "bg-ember text-[#0A0A0A] hover:bg-burnt"
+            }`}
+          >
+            {added ? "Added!" : "Add"}
+          </button>
+        </div>
       </div>
     </div>
   );

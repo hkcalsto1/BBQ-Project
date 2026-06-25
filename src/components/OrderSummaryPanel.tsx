@@ -18,7 +18,7 @@ export default function OrderSummaryPanel({ items, currentStep, serviceType, onC
   const meetsMinOrder = subtotal >= MIN_ORDER;
 
   return (
-    <div className="bg-charcoal-light border border-[rgba(196,148,58,0.15)] rounded-lg p-6">
+    <div className="bg-[#141414] border border-[rgba(196,148,58,0.12)] rounded-2xl p-6">
       <h3 className="font-body text-xs uppercase tracking-[0.1em] text-cream pb-4 border-b border-[rgba(196,148,58,0.1)]">
         Your Order
       </h3>
@@ -69,7 +69,7 @@ export default function OrderSummaryPanel({ items, currentStep, serviceType, onC
         <button
           onClick={onContinue}
           disabled={!hasItems || !meetsMinOrder}
-          className={`w-full mt-4 py-3 rounded font-body text-xs uppercase tracking-[0.1em] transition-all duration-300 ${
+          className={`w-full mt-4 py-3 rounded-full font-body text-xs uppercase tracking-[0.1em] transition-all duration-300 ${
             hasItems && meetsMinOrder
               ? 'bg-ember text-charcoal hover:bg-burnt cursor-pointer'
               : 'bg-ember text-charcoal opacity-40 cursor-not-allowed'

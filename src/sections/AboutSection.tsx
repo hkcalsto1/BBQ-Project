@@ -15,7 +15,7 @@ export default function AboutSection() {
       <div className="max-w-[1100px] mx-auto">
         <div className="flex flex-col md:flex-row-reverse items-center gap-12 md:gap-16">
           {/* Image */}
-          <div className="w-full md:w-[45%] overflow-hidden rounded-lg" ref={imageRef}>
+          <div className="w-full md:w-[45%] overflow-hidden rounded-2xl" ref={imageRef}>
             <img
               src={`${import.meta.env.BASE_URL}assets/about-kitchen.jpg`}
               alt="Pitmaster tending to meats in a professional smokehouse kitchen"
@@ -26,21 +26,24 @@ export default function AboutSection() {
 
           {/* Text */}
           <div className="w-full md:w-[55%]" ref={textRef}>
-            <span className="section-label">ABOUT US</span>
+            <span className="section-label">OUR STORY</span>
             <h2 className="font-display text-[clamp(2rem,4vw,3.5rem)] text-cream leading-tight mt-4">
-              We Smoke the Competition
+              Born from a love<br />of smoke
             </h2>
             <p className="font-body text-base font-light text-[rgba(245,230,200,0.7)] leading-relaxed mt-6">
-              SmokeHouse HK brings authentic Southern smokehouse flavors to Hong Kong. Our meats are slow-smoked over hardwood for hours, developing that deep, rich bark and tender, juicy interior that true BBQ lovers crave.
+              SmokeHouse HK was born out of a simple obsession: finding great BBQ in Hong Kong and coming up empty. So we built it ourselves.
             </p>
             <p className="font-body text-base font-light text-[rgba(245,230,200,0.7)] leading-relaxed mt-4">
-              From intimate family gatherings to corporate events and weddings, our catering team delivers the full smokehouse experience — on-site or drop-off — across Hong Kong.
+              Every cut we smoke is treated with the respect it deserves — seasoned simply, cooked slowly, and served with nothing to hide. No shortcuts. No sauce to mask the work.
+            </p>
+            <p className="font-body text-base font-light text-[rgba(245,230,200,0.7)] leading-relaxed mt-4">
+              Whether you want a ready-to-eat feast delivered to your door, or premium raw cuts for your own grill — we've got you covered.
             </p>
             <button
               onClick={() => scrollTo('#catering')}
               className="pill-button-outline mt-8"
             >
-              Learn About Catering
+              Browse the Menu →
             </button>
           </div>
         </div>
