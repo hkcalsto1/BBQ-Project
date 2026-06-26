@@ -6,7 +6,7 @@ import { defineConfig } from "vite"
 
 // https://vite.dev/config/
 export default defineConfig({
-  base: '/BBQ-Project/',
+  base: process.env.NODE_ENV === 'production' ? '/' : '/BBQ-Project/',
   plugins: [
     devServer({ entry: "api/boot.ts", exclude: [/^\/(?!api\/).*$/] }),
     react(),

@@ -11,7 +11,7 @@ import App from './App.tsx'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <BrowserRouter basename="/BBQ-Project">
+    <BrowserRouter basename={import.meta.env.PROD ? '/' : '/BBQ-Project'}>
       <App />
     </BrowserRouter>
   </StrictMode>,
