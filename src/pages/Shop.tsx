@@ -20,6 +20,10 @@ export default function Shop() {
     return true;
   });
 
+  const visibleCategories = categories.filter((cat) =>
+    activeSection === "ALL" ? true : cat.section === activeSection
+  );
+
   return (
     <div className="bg-charcoal min-h-screen">
       <Navigation />
@@ -33,7 +37,7 @@ export default function Shop() {
           </h1>
           <p className="font-body text-base font-light text-[rgba(245,230,200,0.6)] mt-4 max-w-lg mx-auto">
             Premium smoked BBQ ready to eat, or raw cuts for your own grill.
-            All meats sourced from the finest suppliers in Hong Kong.
+            All meats sourced from the finest suppliers.
           </p>
         </div>
       </div>
@@ -56,7 +60,7 @@ export default function Shop() {
         </div>
       </div>
 
-      {categories.length > 0 && (
+      {visibleCategories.length > 0 && (
         <div className="px-6 md:px-10 pb-8">
           <div className="max-w-[1280px] mx-auto flex flex-wrap justify-center gap-2">
             <button
@@ -67,7 +71,7 @@ export default function Shop() {
             >
               All
             </button>
-            {categories.map((cat) => (
+            {visibleCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
@@ -90,7 +94,7 @@ export default function Shop() {
             </div>
           ) : (
             <>
-              {categories.map((cat) => {
+              {visibleCategories.map((cat) => {
                 const catProducts = filteredProducts.filter((p) => p.categoryId === cat.id);
                 if (catProducts.length === 0) return null;
                 return (

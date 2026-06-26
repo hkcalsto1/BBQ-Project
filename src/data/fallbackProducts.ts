@@ -6,7 +6,6 @@ export const fallbackCategories = [
   { id: 5, name: "Beef", section: "BUTCHER", slug: "beef", sortOrder: 1, isActive: "true" as const, createdAt: new Date() },
   { id: 6, name: "Pork", section: "BUTCHER", slug: "pork", sortOrder: 2, isActive: "true" as const, createdAt: new Date() },
   { id: 7, name: "Poultry", section: "BUTCHER", slug: "poultry", sortOrder: 3, isActive: "true" as const, createdAt: new Date() },
-  { id: 8, name: "Specialty", section: "BUTCHER", slug: "specialty", sortOrder: 4, isActive: "true" as const, createdAt: new Date() },
 ];
 
 export const fallbackProducts = [
@@ -39,8 +38,4 @@ export const fallbackProducts = [
   // BUTCHER - Poultry
   { id: 22, name: "Whole Chicken (Raw)", description: "Free-range whole chickens. 1.5-2kg each. Perfect for roasting or smoking whole.", price: "120", priceUnit: "PER_KG" as const, minWeightKg: "1.5", maxWeightKg: "2.5", weightStep: "0.5", categoryId: 7, section: "BUTCHER" as const, sortOrder: 1, images: null },
   { id: 23, name: "Chicken Wings (Raw)", description: "Whole chicken wings, tips on. 1kg packs. Great for smoking or frying.", price: "95", priceUnit: "PER_KG" as const, minWeightKg: "1", maxWeightKg: "5", weightStep: "0.5", categoryId: 7, section: "BUTCHER" as const, sortOrder: 2, images: null },
-  // BUTCHER - Specialty
-  { id: 24, name: "House-Made Sausages (Raw)", description: "Handmade pork sausages. 6 per pack. Choose from Italian, Bratwurst, or Spicy.", price: "85", priceUnit: "PER_PACK" as const, minWeightKg: null, maxWeightKg: null, weightStep: null, categoryId: 8, section: "BUTCHER" as const, sortOrder: 1, images: null },
-  { id: 25, name: "Ground Beef (Raw)", description: "80/20 ground beef. 500g packs. Perfect for burgers, meatballs, or Bolognese.", price: "160", priceUnit: "PER_PACK" as const, minWeightKg: null, maxWeightKg: null, weightStep: null, categoryId: 8, section: "BUTCHER" as const, sortOrder: 2, images: null },
-  { id: 26, name: "Bacon (Raw)", description: "House-cured smoked bacon. Thick cut. 500g packs.", price: "220", priceUnit: "PER_PACK" as const, minWeightKg: null, maxWeightKg: null, weightStep: null, categoryId: 8, section: "BUTCHER" as const, sortOrder: 3, images: null },
 ];

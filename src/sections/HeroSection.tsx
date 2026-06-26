@@ -59,7 +59,7 @@ export default function HeroSection() {
           <div className="flex flex-wrap items-center gap-6 mt-11 pt-8 border-t border-[rgba(196,148,58,0.12)]">
             {[
               { value: '12hr+', label: 'Slow Smoked' },
-              { value: 'Same Day', label: 'Delivery' },
+
               { value: 'All HK', label: 'Covered' },
             ].map((s, i) => (
               <div key={s.label} className="flex items-center gap-6">

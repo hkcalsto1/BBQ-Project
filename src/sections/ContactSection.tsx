@@ -26,18 +26,7 @@ export default function ContactSection() {
             </ul>
           </div>
 
-          {/* Delivery Hours */}
-          <div className="bg-[#141414] border border-[rgba(196,148,58,0.05)] rounded-2xl p-9 hover:border-[rgba(196,148,58,0.2)] transition-colors">
-            <h3 className="font-display text-[1.3rem] text-cream mb-3">Delivery Hours</h3>
-            <p className="font-body text-[14px] text-smoke mb-4">Order by 12pm for same-day delivery.</p>
-            <ul className="space-y-2 font-body text-[14px] text-smoke">
-              <li>Mon – Fri &nbsp;&nbsp;12pm – 8pm</li>
-              <li>Sat – Sun &nbsp;&nbsp;10am – 8pm</li>
-              <li className="text-smoke/50">Public Holidays — Closed</li>
-            </ul>
-          </div>
-
-          {/* Contact Us */}
+{/* Contact Us */}
           <div className="bg-[#141414] border border-[rgba(196,148,58,0.05)] rounded-2xl p-9 hover:border-[rgba(196,148,58,0.2)] transition-colors">
             <h3 className="font-display text-[1.3rem] text-cream mb-3">Contact Us</h3>
             <p className="font-body text-[14px] text-smoke mb-4">Questions or custom orders?</p>
