@@ -2,7 +2,7 @@ import { useState, useRef } from "react";
 import { trpc } from "@/providers/trpc";
 import { uploadImage, storageConfigured } from "@/lib/uploadImage";
 
-type Section = "SMOKEHOUSE" | "BUTCHER";
+type Section = "SMOKEHOUSE" | "BUTCHER" | "WINE";
 type PriceUnit = "PER_KG" | "PER_PIECE" | "PER_PACK" | "PER_TRAY" | "PER_PORTION";
 
 const PRICE_UNITS: PriceUnit[] = ["PER_KG", "PER_PIECE", "PER_PACK", "PER_TRAY", "PER_PORTION"];
@@ -101,7 +101,7 @@ export default function ProductsTab() {
     <div>
       <div className="flex items-center justify-between mb-6">
         <div className="flex gap-2">
-          {(["SMOKEHOUSE", "BUTCHER"] as Section[]).map((s) => (
+          {(["SMOKEHOUSE", "BUTCHER", "WINE"] as Section[]).map((s) => (
             <button key={s} onClick={() => setSection(s)}
               className={`px-4 py-1.5 rounded font-body text-xs uppercase tracking-wider transition-all cursor-pointer ${
                 section === s ? "bg-ember text-charcoal" : "bg-charcoal-light text-smoke hover:text-cream"
@@ -224,6 +224,7 @@ export default function ProductsTab() {
                   <select className="input-dark" value={form.section} onChange={(e) => setForm({ ...form, section: e.target.value as Section })}>
                     <option value="SMOKEHOUSE">Smokehouse</option>
                     <option value="BUTCHER">Butcher</option>
+                    <option value="WINE">Wine</option>
                   </select>
                 </Field>
                 <Field label="Category">

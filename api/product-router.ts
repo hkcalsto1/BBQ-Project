@@ -9,7 +9,7 @@ export const productRouter = createRouter({
   list: publicQuery
     .input(
       z.object({
-        section: z.enum(["SMOKEHOUSE", "BUTCHER"]).optional(),
+        section: z.enum(["SMOKEHOUSE", "BUTCHER", "WINE"]).optional(),
         categoryId: z.number().optional(),
       }).optional()
     )
@@ -76,7 +76,7 @@ export const productRouter = createRouter({
       maxWeightKg: z.string().optional().nullable(),
       weightStep: z.string().optional().nullable(),
       categoryId: z.number(),
-      section: z.enum(["SMOKEHOUSE", "BUTCHER"]),
+      section: z.enum(["SMOKEHOUSE", "BUTCHER", "WINE"]),
       isActive: z.enum(["true", "false"]).default("true"),
       sortOrder: z.number().default(0),
     }))
@@ -109,7 +109,7 @@ export const productRouter = createRouter({
     .input(z.object({
       id: z.number().optional(),
       name: z.string().min(1),
-      section: z.enum(["SMOKEHOUSE", "BUTCHER"]),
+      section: z.enum(["SMOKEHOUSE", "BUTCHER", "WINE"]),
       slug: z.string().min(1),
       sortOrder: z.number().default(0),
       isActive: z.enum(["true", "false"]).default("true"),
@@ -147,6 +147,10 @@ export const productRouter = createRouter({
       { name: "Pork", section: "BUTCHER" as const, slug: "pork", sortOrder: 2, isActive: "true" as const },
       { name: "Poultry", section: "BUTCHER" as const, slug: "poultry", sortOrder: 3, isActive: "true" as const },
       { name: "Specialty", section: "BUTCHER" as const, slug: "specialty", sortOrder: 4, isActive: "true" as const },
+      { name: "Red Wine", section: "WINE" as const, slug: "red-wine", sortOrder: 1, isActive: "true" as const },
+      { name: "White Wine", section: "WINE" as const, slug: "white-wine", sortOrder: 2, isActive: "true" as const },
+      { name: "Sparkling & Champagne", section: "WINE" as const, slug: "sparkling-champagne", sortOrder: 3, isActive: "true" as const },
+      { name: "Rosé", section: "WINE" as const, slug: "rose", sortOrder: 4, isActive: "true" as const },
     ];
     await db.insert(categories).values(defaults);
     return { skipped: false, count: defaults.length };
@@ -156,7 +160,7 @@ export const productRouter = createRouter({
   categories: publicQuery
     .input(
       z.object({
-        section: z.enum(["SMOKEHOUSE", "BUTCHER"]).optional(),
+        section: z.enum(["SMOKEHOUSE", "BUTCHER", "WINE"]).optional(),
       }).optional()
     )
     .query(async ({ input }) => {

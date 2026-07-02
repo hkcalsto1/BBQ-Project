@@ -13,7 +13,7 @@ import {
 
 // ── Enums ──
 export const roleEnum = pgEnum("role", ["user", "admin"]);
-export const sectionEnum = pgEnum("section", ["SMOKEHOUSE", "BUTCHER"]);
+export const sectionEnum = pgEnum("section", ["SMOKEHOUSE", "BUTCHER", "WINE"]);
 export const isActiveEnum = pgEnum("is_active", ["true", "false"]);
 export const priceUnitEnum = pgEnum("price_unit", [
   "PER_KG", "PER_PIECE", "PER_PACK", "PER_TRAY", "PER_PORTION",

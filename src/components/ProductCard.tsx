@@ -38,6 +38,7 @@ export default function ProductCard({ product }: Props) {
   const maxW = product.maxWeightKg ? parseFloat(product.maxWeightKg) : 10;
   const step = product.weightStep ? parseFloat(product.weightStep) : 0.5;
   const displayPrice = isWeightBased ? price * weight : price;
+  const isWine = product.section === "WINE";
   const isReady = product.section === "SMOKEHOUSE";
 
   const handleAdd = () => {
@@ -59,16 +60,22 @@ export default function ProductCard({ product }: Props) {
       <div className="relative aspect-[4/3] bg-[#1C1C1C]">
         <div className="absolute inset-0 flex items-center justify-center select-none">
           <span className="font-display text-4xl text-ember/10 uppercase tracking-widest">
-            {isReady ? "Smoke" : "Raw"}
+            {isWine ? "Wine" : isReady ? "Smoke" : "Raw"}
           </span>
         </div>
-        <span className={`absolute top-3 right-3 z-10 font-body text-[0.6rem] font-semibold uppercase tracking-[0.06em] px-2.5 py-1 rounded-full ${
-          isReady
-            ? "bg-[rgba(196,148,58,0.9)] text-[#0A0A0A]"
-            : "bg-[rgba(37,37,37,0.9)] text-[rgba(245,230,200,0.6)] border border-[rgba(196,148,58,0.1)]"
-        }`}>
-          {isReady ? "Ready" : "Raw Cut"}
-        </span>
+        {isWine ? (
+          <span className="absolute top-3 right-3 z-10 font-body text-[0.6rem] font-semibold uppercase tracking-[0.06em] px-2.5 py-1 rounded-full bg-[rgba(122,29,44,0.9)] text-cream">
+            18+
+          </span>
+        ) : (
+          <span className={`absolute top-3 right-3 z-10 font-body text-[0.6rem] font-semibold uppercase tracking-[0.06em] px-2.5 py-1 rounded-full ${
+            isReady
+              ? "bg-[rgba(196,148,58,0.9)] text-[#0A0A0A]"
+              : "bg-[rgba(37,37,37,0.9)] text-[rgba(245,230,200,0.6)] border border-[rgba(196,148,58,0.1)]"
+          }`}>
+            {isReady ? "Ready" : "Raw Cut"}
+          </span>
+        )}
       </div>
 
       {/* Body */}

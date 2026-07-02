@@ -4,17 +4,36 @@ import ProductCard from "@/components/ProductCard";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
 import CartDrawer from "@/components/CartDrawer";
+import AgeGate from "@/components/AgeGate";
 import { useCart } from "@/hooks/useCart";
 
-type Section = "ALL" | "SMOKEHOUSE" | "BUTCHER";
+type Section = "ALL" | "SMOKEHOUSE" | "BUTCHER" | "WINE";
+
+const AGE_VERIFIED_KEY = "smokehouse_age_verified";
 
 export default function Shop() {
   const [activeSection, setActiveSection] = useState<Section>("ALL");
   const [activeCategory, setActiveCategory] = useState<number | null>(null);
+  const [ageVerified, setAgeVerified] = useState(
+    () => sessionStorage.getItem(AGE_VERIFIED_KEY) === "true"
+  );
   const { totalItems, setIsOpen } = useCart();
   const { products, categories, isLoading } = useShopData();
 
+  const showAgeGate = activeSection === "WINE" && !ageVerified;
+
+  const handleConfirmAge = () => {
+    sessionStorage.setItem(AGE_VERIFIED_KEY, "true");
+    setAgeVerified(true);
+  };
+
+  const handleDeclineAge = () => {
+    setActiveSection("ALL");
+    setActiveCategory(null);
+  };
+
   const filteredProducts = products.filter((p) => {
+    if (p.section === "WINE" && !ageVerified) return false;
     if (activeSection !== "ALL" && p.section !== activeSection) return false;
     if (activeCategory && p.categoryId !== activeCategory) return false;
     return true;
@@ -44,7 +63,7 @@ export default function Shop() {
 
       <div className="px-6 md:px-10 pb-8">
         <div className="max-w-[1280px] mx-auto flex flex-wrap justify-center gap-3">
-          {(["ALL", "SMOKEHOUSE", "BUTCHER"] as Section[]).map((s) => (
+          {(["ALL", "SMOKEHOUSE", "BUTCHER", "WINE"] as Section[]).map((s) => (
             <button
               key={s}
               onClick={() => { setActiveSection(s); setActiveCategory(null); }}
@@ -54,13 +73,17 @@ export default function Shop() {
                   : "bg-transparent text-smoke border-[rgba(196,148,58,0.2)] hover:border-ember hover:text-ember"
               }`}
             >
-              {s === "ALL" ? "All Products" : s === "SMOKEHOUSE" ? "The Smokehouse" : "The Butcher Block"}
+              {s === "ALL" ? "All Products" : s === "SMOKEHOUSE" ? "The Smokehouse" : s === "BUTCHER" ? "The Butcher Block" : "The Cellar"}
             </button>
           ))}
         </div>
       </div>
 
-      {visibleCategories.length > 0 && (
+      {showAgeGate && (
+        <AgeGate onConfirm={handleConfirmAge} onDecline={handleDeclineAge} />
+      )}
+
+      {!showAgeGate && visibleCategories.length > 0 && (
         <div className="px-6 md:px-10 pb-8">
           <div className="max-w-[1280px] mx-auto flex flex-wrap justify-center gap-2">
             <button
@@ -88,7 +111,7 @@ export default function Shop() {
 
       <div className="px-6 md:px-10 pb-20">
         <div className="max-w-[1280px] mx-auto">
-          {isLoading ? (
+          {showAgeGate ? null : isLoading ? (
             <div className="text-center py-20">
               <div className="w-8 h-8 border-2 border-ember border-t-transparent rounded-full animate-spin mx-auto" />
             </div>

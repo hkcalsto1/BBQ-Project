@@ -6,6 +6,10 @@ export const fallbackCategories = [
   { id: 5, name: "Beef", section: "BUTCHER", slug: "beef", sortOrder: 1, isActive: "true" as const, createdAt: new Date() },
   { id: 6, name: "Pork", section: "BUTCHER", slug: "pork", sortOrder: 2, isActive: "true" as const, createdAt: new Date() },
   { id: 7, name: "Poultry", section: "BUTCHER", slug: "poultry", sortOrder: 3, isActive: "true" as const, createdAt: new Date() },
+  { id: 9, name: "Red Wine", section: "WINE", slug: "red-wine", sortOrder: 1, isActive: "true" as const, createdAt: new Date() },
+  { id: 10, name: "White Wine", section: "WINE", slug: "white-wine", sortOrder: 2, isActive: "true" as const, createdAt: new Date() },
+  { id: 11, name: "Sparkling & Champagne", section: "WINE", slug: "sparkling-champagne", sortOrder: 3, isActive: "true" as const, createdAt: new Date() },
+  { id: 12, name: "Rosé", section: "WINE", slug: "rose", sortOrder: 4, isActive: "true" as const, createdAt: new Date() },
 ];
 
 export const fallbackProducts = [
@@ -38,4 +42,13 @@ export const fallbackProducts = [
   // BUTCHER - Poultry
   { id: 22, name: "Whole Chicken (Raw)", description: "Free-range whole chickens. 1.5-2kg each. Perfect for roasting or smoking whole.", price: "120", priceUnit: "PER_KG" as const, minWeightKg: "1.5", maxWeightKg: "2.5", weightStep: "0.5", categoryId: 7, section: "BUTCHER" as const, sortOrder: 1, images: null },
   { id: 23, name: "Chicken Wings (Raw)", description: "Whole chicken wings, tips on. 1kg packs. Great for smoking or frying.", price: "95", priceUnit: "PER_KG" as const, minWeightKg: "1", maxWeightKg: "5", weightStep: "0.5", categoryId: 7, section: "BUTCHER" as const, sortOrder: 2, images: null },
+  // WINE - Red Wine
+  { id: 24, name: "Cabernet Sauvignon", description: "Full-bodied red with notes of blackcurrant and cedar. Pairs perfectly with smoked brisket.", price: "380", priceUnit: "PER_PIECE" as const, minWeightKg: null, maxWeightKg: null, weightStep: null, categoryId: 9, section: "WINE" as const, sortOrder: 1, images: null },
+  { id: 25, name: "Malbec Reserva", description: "Rich and velvety Argentine Malbec. Bold tannins that stand up to smoked meats.", price: "340", priceUnit: "PER_PIECE" as const, minWeightKg: null, maxWeightKg: null, weightStep: null, categoryId: 9, section: "WINE" as const, sortOrder: 2, images: null },
+  // WINE - White Wine
+  { id: 26, name: "Chardonnay", description: "Crisp and buttery with hints of vanilla oak. A great match for smoked poultry.", price: "310", priceUnit: "PER_PIECE" as const, minWeightKg: null, maxWeightKg: null, weightStep: null, categoryId: 10, section: "WINE" as const, sortOrder: 1, images: null },
+  { id: 27, name: "Sauvignon Blanc", description: "Zesty and refreshing with citrus and green apple notes. Pairs well with sides.", price: "295", priceUnit: "PER_PIECE" as const, minWeightKg: null, maxWeightKg: null, weightStep: null, categoryId: 10, section: "WINE" as const, sortOrder: 2, images: null },
+  // WINE - Sparkling & Champagne
+  { id: 28, name: "Prosecco", description: "Light, fruity Italian sparkling wine. Great for celebrations.", price: "260", priceUnit: "PER_PIECE" as const, minWeightKg: null, maxWeightKg: null, weightStep: null, categoryId: 11, section: "WINE" as const, sortOrder: 1, images: null },
+  { id: 29, name: "Champagne Brut", description: "Classic French champagne. Fine bubbles, elegant and dry.", price: "780", priceUnit: "PER_PIECE" as const, minWeightKg: null, maxWeightKg: null, weightStep: null, categoryId: 11, section: "WINE" as const, sortOrder: 2, images: null },
 ];

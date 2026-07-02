@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { trpc } from "@/providers/trpc";
 
-type Section = "SMOKEHOUSE" | "BUTCHER";
+type Section = "SMOKEHOUSE" | "BUTCHER" | "WINE";
 
 type CatForm = {
   id?: number;
@@ -70,7 +70,7 @@ export default function CategoriesTab() {
         </div>
       )}
 
-      {(["SMOKEHOUSE", "BUTCHER"] as Section[]).map((s) => (
+      {(["SMOKEHOUSE", "BUTCHER", "WINE"] as Section[]).map((s) => (
         <div key={s} className="mb-8">
           <h3 className="font-body text-xs uppercase tracking-[0.15em] text-ember mb-3">{s}</h3>
           <div className="space-y-2">
@@ -137,6 +137,7 @@ export default function CategoriesTab() {
                   <select className="input-dark" value={form.section} onChange={(e) => setForm({ ...form, section: e.target.value as Section })}>
                     <option value="SMOKEHOUSE">Smokehouse</option>
                     <option value="BUTCHER">Butcher</option>
+                    <option value="WINE">Wine</option>
                   </select>
                 </Field>
                 <Field label="Sort Order">
