@@ -86,6 +86,7 @@ export default function ProductsTab() {
   const submit = () => {
     if (!form) return;
     if (!form.name || !form.price) { setError("Name and price are required."); return; }
+    if (!form.categoryId) { setError("Select a category for this section first."); return; }
     upsert.mutate({
       ...form,
       description: form.description || null,
@@ -221,7 +222,11 @@ export default function ProductsTab() {
               </div>
               <div className="grid grid-cols-2 gap-3">
                 <Field label="Section">
-                  <select className="input-dark" value={form.section} onChange={(e) => setForm({ ...form, section: e.target.value as Section })}>
+                  <select className="input-dark" value={form.section} onChange={(e) => {
+                    const newSection = e.target.value as Section;
+                    const firstCat = allCategories.find((c) => c.section === newSection)?.id ?? 0;
+                    setForm({ ...form, section: newSection, categoryId: firstCat });
+                  }}>
                     <option value="SMOKEHOUSE">Smokehouse</option>
                     <option value="BUTCHER">Butcher</option>
                     <option value="WINE">Wine</option>
