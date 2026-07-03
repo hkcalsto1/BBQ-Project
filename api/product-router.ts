@@ -79,6 +79,7 @@ export const productRouter = createRouter({
       section: z.enum(["SMOKEHOUSE", "BUTCHER", "WINE"]),
       isActive: z.enum(["true", "false"]).default("true"),
       sortOrder: z.number().default(0),
+      images: z.array(z.string()).optional().nullable(),
     }))
     .mutation(async ({ input }) => {
       const db = getDb();
