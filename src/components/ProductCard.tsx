@@ -11,6 +11,7 @@ interface Product {
   maxWeightKg: string | null;
   weightStep: string | null;
   section: string;
+  images?: string[] | null;
 }
 
 interface Props {
@@ -40,6 +41,7 @@ export default function ProductCard({ product }: Props) {
   const displayPrice = isWeightBased ? price * weight : price;
   const isWine = product.section === "WINE";
   const isReady = product.section === "SMOKEHOUSE";
+  const image = product.images?.[0];
 
   const handleAdd = () => {
     addItem({
@@ -58,11 +60,15 @@ export default function ProductCard({ product }: Props) {
     <div className="bg-charcoal-light border border-[rgba(196,148,58,0.06)] rounded-2xl overflow-hidden hover:border-[rgba(196,148,58,0.25)] transition-colors duration-300 flex flex-col">
       {/* Image area */}
       <div className="relative aspect-[4/3] bg-[#1C1C1C]">
-        <div className="absolute inset-0 flex items-center justify-center select-none">
-          <span className="font-display text-4xl text-ember/10 uppercase tracking-widest">
-            {isWine ? "Wine" : isReady ? "Smoke" : "Raw"}
-          </span>
-        </div>
+        {image ? (
+          <img src={image} alt={product.name} className="absolute inset-0 w-full h-full object-cover" />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center select-none">
+            <span className="font-display text-4xl text-ember/10 uppercase tracking-widest">
+              {isWine ? "Wine" : isReady ? "Smoke" : "Raw"}
+            </span>
+          </div>
+        )}
         {isWine ? (
           <span className="absolute top-3 right-3 z-10 font-body text-[0.6rem] font-semibold uppercase tracking-[0.06em] px-2.5 py-1 rounded-full bg-[rgba(122,29,44,0.9)] text-cream">
             18+
