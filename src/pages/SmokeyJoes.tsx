@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router";
+import { useEffect } from "react";
 
 const HERO_IMAGE = `${import.meta.env.BASE_URL}assets/hero-bbq-spread.jpg`;
 
@@ -12,18 +13,16 @@ function scrollToCatering(navigate: ReturnType<typeof useNavigate>) {
 export default function SmokeyJoes() {
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const previousTitle = document.title;
+    document.title = "Smokey Joe's | Catering & Online Shop";
+    return () => {
+      document.title = previousTitle;
+    };
+  }, []);
+
   return (
     <div className="bg-charcoal min-h-screen">
-      {/* Minimal top bar */}
-      <div className="fixed top-0 left-0 right-0 z-[1000] h-[64px] flex items-center justify-between px-6 md:px-10">
-        <Link
-          to="/"
-          className="font-body text-[0.65rem] uppercase tracking-[0.15em] text-smoke hover:text-ember transition-colors"
-        >
-          &larr; SmokeHouse HK
-        </Link>
-      </div>
-
       {/* Hero */}
       <section className="relative min-h-screen flex items-center justify-center px-6 overflow-hidden">
         <div
@@ -108,9 +107,6 @@ export default function SmokeyJoes() {
         >
           View Restaurant &amp; Book a Table &rarr;
         </a>
-        <p className="font-body text-[11px] text-smoke/50 mt-10">
-          Catering &amp; online shop powered by SmokeHouse HK
-        </p>
       </section>
     </div>
   );
