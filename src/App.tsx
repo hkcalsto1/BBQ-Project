@@ -7,6 +7,7 @@ import Shop from "@/pages/Shop";
 import Checkout from "@/pages/Checkout";
 import Admin from "@/pages/Admin";
 import Login from "@/pages/Login";
+import SmokeyJoes from "@/pages/SmokeyJoes";
 import NotFound from "@/pages/NotFound";
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
+            <Route path="/smokeyjoes" element={<SmokeyJoes />} />
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/admin" element={<Admin />} />
             <Route path="/login" element={<Login />} />
