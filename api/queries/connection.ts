@@ -10,7 +10,7 @@ let instance: ReturnType<typeof drizzle>;
 
 export function getDb() {
   if (!instance) {
-    const client = postgres(env.databaseUrl, { ssl: "require" });
+    const client = postgres(env.databaseUrl, { ssl: env.databaseSsl ? "require" : false });
     instance = drizzle(client, { schema: fullSchema });
   }
   return instance;

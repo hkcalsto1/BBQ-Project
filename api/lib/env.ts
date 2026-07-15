@@ -13,6 +13,7 @@ export const env = {
   appSecret: required("APP_SECRET"),
   isProduction: process.env.NODE_ENV === "production",
   databaseUrl: required("DATABASE_URL"),
+  databaseSsl: process.env.DATABASE_SSL === "true",
   adminEmail: required("ADMIN_EMAIL"),
   adminPassword: required("ADMIN_PASSWORD"),
 };

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { trpc } from "@/providers/trpc";
-import { uploadImage, storageConfigured } from "@/lib/uploadImage";
+import { uploadImage } from "@/lib/uploadImage";
 
 type Category = "MEAT" | "SIDES" | "SLIDERS" | "OTHER";
 
@@ -176,10 +176,8 @@ export default function MenuTab() {
                       >✕</button>
                     </div>
                   )}
-                  <label className={`w-20 h-20 rounded border-2 border-dashed flex flex-col items-center justify-center cursor-pointer transition-colors ${
-                    storageConfigured ? "border-[rgba(196,148,58,0.3)] hover:border-ember text-smoke hover:text-ember" : "border-[rgba(255,255,255,0.1)] text-smoke/40 cursor-not-allowed"
-                  }`}>
-                    <input ref={fileRef} type="file" accept="image/*" hidden onChange={handleFileChange} disabled={!storageConfigured || uploading} />
+                  <label className="w-20 h-20 rounded border-2 border-dashed border-[rgba(196,148,58,0.3)] hover:border-ember text-smoke hover:text-ember flex flex-col items-center justify-center cursor-pointer transition-colors">
+                    <input ref={fileRef} type="file" accept="image/*" hidden onChange={handleFileChange} disabled={uploading} />
                     {uploading ? <div className="w-4 h-4 border-2 border-ember border-t-transparent rounded-full animate-spin" /> : <><span className="text-xl leading-none">+</span><span className="font-body text-[0.55rem] uppercase tracking-wide mt-1">Photo</span></>}
                   </label>
                 </div>
